@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:passive_relationships).class_name("Relationship").with_foreign_key("followed_id").dependent(:destroy) }
   it { should have_many(:following).through(:active_relationships).source(:followed) }
   it { should have_many(:followers).through(:passive_relationships).source(:follower) }
-
+  it { should have_many(:posts).dependent(:destroy) }
   describe "#follow and #unfollow and checks if user is following the other user" do
     let(:user1) { create(:user) }
     let(:user2) { create(:user) }

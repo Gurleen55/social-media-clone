@@ -1,0 +1,5 @@
+
+<%= form_with model: post do |form|%>
+    <%= form.text_area :body, class: "w-full border border-gray-300 rounded-md p-2"%>
+    <%= form.submit "Create Post", class: "bg-blue-500 text-white p-2 rounded-md"%>
+<% end %>

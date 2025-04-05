@@ -1,0 +1,11 @@
+<div>
+  <h3 class="font-bold text-4xl">Your Feed</h3>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <p>Posted By:<%=post.user.username %></p>
+        <p><%= post.body %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
