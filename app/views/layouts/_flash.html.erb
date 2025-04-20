@@ -1,0 +1,28 @@
+    <% if flash[:notice] %>
+      <div class="fixed w-full">
+        <div class="bg-green-500 text-white p-4">
+          <p><%= flash[:notice] %></p>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="fixed">
+        <div class="bg-red-500 text-white p-4">
+          <p><%= flash[:alert] %></p>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="fixed">
+        <div class="bg-red-500 text-white p-4">
+          <p><%= flash[:error] %></p>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div class="fixed">
+        <div class="bg-green-500 text-white p-4">
+          <p><%= flash[:success] %></p>
+        </div>
+      </div>
+    <% end %>

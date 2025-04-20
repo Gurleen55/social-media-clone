@@ -47,7 +47,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails"
   gem "capybara"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "~> 4.10"
+  gem "webdrivers", "~> 5.3"
   gem "factory_bot_rails"
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
 
@@ -68,3 +69,7 @@ group :development do
 end
 
 gem "devise", "~> 4.9"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"

@@ -27,6 +27,13 @@ require 'rspec/rails'
  #
  Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
+
+ Capybara.register_driver :chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :chrome_headless
+
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
@@ -41,21 +48,19 @@ RSpec.configure do |config|
   ]
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
+  config.before(:each) do |example|
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
+
 
   config.after(:each) do
     DatabaseCleaner.clean
   end
 
-  config.before(:each, type: :system, js: true) do
-    DatabaseCleaner.strategy = :deletion
-  end
 
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller

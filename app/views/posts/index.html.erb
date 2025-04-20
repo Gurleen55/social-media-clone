@@ -1,11 +1,14 @@
-<div>
-  <h3 class="font-bold text-4xl">Your Feed</h3>
-  <ul>
-    <% @posts.each do |post| %>
-      <li>
-        <p>Posted By:<%=post.user.username %></p>
-        <p><%= post.body %></p>
-      </li>
-    <% end %>
-  </ul>
+<div class="max-w-2xl mx-auto px-4">
+  <div class="text-right my-4">
+    <%= link_to "Create new post", new_post_path, class: "inline-block bg-cyan-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 rounded-sm font-medium transition",
+    data: {turbo_frame: dom_id(Post.new)} %>
+  </div>
+
+  <h3 class="font-bold text-4xl mb-6 text-center text-black mt-8 bg-cyan-200 py-2 rounded">Your Feed</h3>
+  
+  <%= turbo_frame_tag Post.new %>
+
+  <%= turbo_frame_tag "posts" do %>
+    <%= render @posts %>
+  <% end %>
 </div>

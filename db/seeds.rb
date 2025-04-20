@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+10.times do |i|
+  user = FactoryBot.create(:user)
+
+  3.times do
+    user.posts.create(body: Faker::Lorem.paragraph(sentence_count: 2))
+  end
+end
