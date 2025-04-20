@@ -1,28 +1,9 @@
-    <% if flash[:notice] %>
-      <div class="fixed w-full">
-        <div class="bg-green-500 text-white p-4">
-          <p><%= flash[:notice] %></p>
-        </div>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="fixed">
-        <div class="bg-red-500 text-white p-4">
-          <p><%= flash[:alert] %></p>
-        </div>
-      </div>
-    <% end %>
-    <% if flash[:error] %>
-      <div class="fixed">
-        <div class="bg-red-500 text-white p-4">
-          <p><%= flash[:error] %></p>
-        </div>
-      </div>
-    <% end %>
-    <% if flash[:success] %>
-      <div class="fixed">
-        <div class="bg-green-500 text-white p-4">
-          <p><%= flash[:success] %></p>
-        </div>
-      </div>
-    <% end %>
+<% if flash.any? %>
+  <% flash.each do |flash_type, message| %>
+    <div data-controller="flash" class="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded shadow-lg text-white
+      <%= 'bg-green-500' if ['notice', 'success'].include?(flash_type.to_s) %>
+      <%= 'bg-red-500' if ['alert', 'error'].include?(flash_type.to_s) %>">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
   before_action :set_post, only: %i[edit update]
+  before_action :authorize_user!, only: %i[edit update ]
   def index
     @posts = Post.includes(:user).all
   end
@@ -40,5 +41,11 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @post.user == current_user
+      redirect_to posts_path, alert: "You are not authorized"
+    end
   end
 end
