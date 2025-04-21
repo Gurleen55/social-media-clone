@@ -4,7 +4,11 @@
             <p class="font-medium text-lg mb-4 text-gray-600"><%= post.user.username %></p>
             <p class="italic text-gray-700"><%= post.body %></p>
             <% if current_user == post.user %>
-                <div class="absolute right-3 bottom-3 inline-block bg-cyan-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= link_to "Edit post", edit_post_path(post) %></div>
+                <div class="absolute right-3 bottom-3 flex flex-col gap-2">
+                    <div class="block bg-cyan-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= link_to "Edit post", edit_post_path(post) %></div>
+                    <div class="block bg-red-200 text-black hover:bg-red-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= button_to "Delete post", 
+                    post_path(post), method: :delete, data: { turbo_confirm: true} %></div>
+                </div>
             <% end %>
     </div>
 <% end %>

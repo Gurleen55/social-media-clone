@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
-  before_action :set_post, only: %i[edit update]
-  before_action :authorize_user!, only: %i[edit update ]
+  before_action :set_post, only: %i[edit update destroy]
+  before_action :authorize_user!, only: %i[edit update destroy]
   def index
-    @posts = Post.includes(:user).all
+    @posts = Post.includes(:user).recent.all
   end
 
   def new
@@ -31,6 +31,14 @@ class PostsController < ApplicationController
       redirect_to posts_path, notice: "Post was successfully updated."
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_path, notice: "Post was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Post was successfully destroyed." }
     end
   end
 
