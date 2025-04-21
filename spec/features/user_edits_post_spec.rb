@@ -14,8 +14,8 @@ RSpec.describe "User edits a post", type: :feature, js: true do
   it "creates a post" do
     click_link "Edit post"
     expect(page).to have_current_path(root_path)
-    fill_in "post_body", with: "Updated Post"
-    click_button "Update post"
+    fill_in "post_body", with: "Updated post"
+    click_button "Update Post"
     expect(page).to have_current_path(root_path)
     expect(page).to have_content "Updated post"
   end
