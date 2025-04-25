@@ -32,7 +32,7 @@ require 'rspec/rails'
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :chrome_headless
+Capybara.javascript_driver = :selenium_chrome_headless
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
