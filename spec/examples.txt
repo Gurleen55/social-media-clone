@@ -1,5 +1,6 @@
 example_id                                               | status  | run_time        |
 -------------------------------------------------------- | ------- | --------------- |
+./spec/features/user_creates_a_comment_spec.rb[1:1]      | failed  | 3.46 seconds    |
 ./spec/features/user_creates_post_spec.rb[1:1]           | passed  | 0.59822 seconds |
 ./spec/features/user_deletes_post_spec.rb[1:1]           | passed  | 0.28956 seconds |
 ./spec/features/user_edits_post_spec.rb[1:1]             | passed  | 1.7 seconds     |

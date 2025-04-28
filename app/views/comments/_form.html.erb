@@ -1,0 +1,5 @@
+<%= form_with model: [@post, @comment] do |f|%>
+    <%= f.label :body, class: "sr-only"%>
+     <%= f.text_area :body, class: "border-none w-[30vw] h-30 p-4 resize-none focus:outline-none", placeholder: "write a comment", autofocus: true%>
+    <%= f.submit "Create Comment", class: "bg-violet-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 m-4 rounded-sm font-medium transition"%>
+<% end %>
