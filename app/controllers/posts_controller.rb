@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :set_post, only: %i[edit update destroy show]
   before_action :authorize_user!, only: %i[edit update destroy]
   def index
     @posts = Post.includes(:user).recent.all
@@ -21,6 +21,11 @@ class PostsController < ApplicationController
     else
         render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @post = Post.includes(:user, comments: :user).find(params[:id])
+    @comment = Comment.new
   end
 
   def edit

@@ -1,15 +1,17 @@
-<%= turbo_frame_tag post do %>   
-    <div class="border border-gray-300 rounded-2xl p-6 shadow-sm bg-white my-4 relative">
-            <p class="text-sm text-gray-500 mb-1">Posted By:</p>
-            <p class="font-medium text-lg mb-4 text-gray-600"><%= post.user.username %></p>
-            <p class="italic text-gray-700 mb-8"><%= post.body %></p>
-            <% if current_user == post.user %>
-                <div class="absolute right-3 bottom-3 flex flex-col gap-2">
-                    <div class="block bg-cyan-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= link_to "Edit post", edit_post_path(post) %></div>
-                    <div class="block bg-red-200 text-black hover:bg-red-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= button_to "Delete post", 
-                    post_path(post), method: :delete, data: { turbo_confirm: true} %></div>
-                </div>
-            <% end %>
-            <%= link_to "New Comment", new_post_comment_path(post), class: "bg-violet-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 mt-4 rounded-sm font-medium transition"%>
-    </div>
-<% end %>
+<div data-controller="navigate" data-navigate-url-value="<%= post_path(post)%>" data-action="click->navigate#go"  class="cursor-pointer">
+    <%= turbo_frame_tag post do %>
+        <div class="border border-gray-300 rounded-2xl p-6 shadow-sm bg-white my-4 relative">
+                <p class="text-sm text-gray-500 mb-1">Posted By:</p>
+                <p class="font-medium text-lg mb-4 text-gray-600"><%= post.user.username %></p>
+                <p class="italic text-gray-700 mb-8"><%= post.body %></p>
+                <% if current_user == post.user %>
+                    <div class="absolute right-3 bottom-3 flex flex-col gap-2">
+                        <div class="block bg-cyan-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= link_to "Edit post", edit_post_path(post) %></div>
+                        <div class="block bg-red-200 text-black hover:bg-red-300 hover:text-black px-4 py-2 rounded-sm font-medium transition"><%= button_to "Delete post",
+                        post_path(post), method: :delete, data: { turbo_confirm: true} %></div>
+                    </div>
+                <% end %>
+                <%= link_to "New Comment", new_post_comment_path(post), class: "bg-violet-200 text-black hover:bg-cyan-300 hover:text-black px-4 py-2 mt-4 rounded-sm font-medium transition", data: {turbo: false}%>
+        </div>
+    <% end %>
+</div>
