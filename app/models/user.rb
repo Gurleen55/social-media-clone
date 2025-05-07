@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_commit :send_welcome_email, on: :create
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,6 +17,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+
 
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -42,5 +45,10 @@ class User < ApplicationRecord
       user.update(provider: auth.provider, uid: auth.uid)
     end
     user
+  end
+
+  private
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver_now
   end
 end

@@ -66,6 +66,7 @@ group :development do
     gem "shoulda-matchers", "~> 6.0"
      gem "database_cleaner-active_record"
   end
+  gem "letter_opener"
 end
 
 gem "devise", "~> 4.9"
