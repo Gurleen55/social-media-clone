@@ -63,7 +63,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   group :test do
-    gem "shoulda-matchers", "~> 6.0"
+    gem "shoulda-matchers", "~> 6.5"
      gem "database_cleaner-active_record"
   end
   gem "letter_opener"
