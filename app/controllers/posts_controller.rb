@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!
   before_action :set_post, only: %i[edit update destroy show]
   before_action :authorize_user!, only: %i[edit update destroy]
   def index
-    @posts = Post.includes(:user).recent.all
+    @posts = Post.includes(:user, :comments).feed_for(current_user).recent
   end
 
   def new
